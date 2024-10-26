@@ -43,7 +43,6 @@ Then we can publish
     ```bash
     ros2 run webcam_video_streamer video_node --webcam --fps SOME_INT_VALUE
     ```
-    Note that in 
 * **video** using the following command
     ```bash
     ros2 run webcam_video_streamer video_node --file path/to/video/file
