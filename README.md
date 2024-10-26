@@ -48,9 +48,8 @@ Then we can publish
     ros2 run webcam_video_streamer video_node --file path/to/video/file
     ```
 
-:::info
-Note that the published topic is named by the type of streaming (video: `/video_image`, webcam: `/webcam_image`).
-:::
+> [!IMPORTANT]
+> Note that the published topic is named by the type of streaming (video: `/video_image`, webcam: `/webcam_image`).
 
 For more options, please check:
 
@@ -88,6 +87,7 @@ ros2 run rqt_image_view rqt_image_view
 
 You can check ros2 topic to see current stream header:
 
+> [!NOTE]
 > `TOPIC` can be `/video_image` (video) or `/webcam_image` (webcam)
 
 * Frame ID
