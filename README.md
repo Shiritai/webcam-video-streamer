@@ -81,11 +81,18 @@ Run the following command to see the streaming content
 ros2 run rqt_image_view rqt_image_view
 ```
 
-Moreover, you can check ros2 topic to see current stream header:
+## Profiling
 
-```bash
-ros2 topic echo /video_image | grep sec
-```
+You can check ros2 topic to see current stream header:
+
+* Frame ID
+    ```bash
+    ros2 topic echo /video_image | grep frame_id
+    ```
+* Time stamp
+    ```bash
+    ros2 topic echo /video_image | grep sec
+    ```
 
 ## Note
 
