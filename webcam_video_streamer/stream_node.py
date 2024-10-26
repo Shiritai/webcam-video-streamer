@@ -12,11 +12,11 @@ class StreamType(Enum):
     WEBCAM = 'webcam'
 
     @property
-    def node_str(self):
+    def node(self):
         return f"{self.value}_node"
 
     @property
-    def image_str(self):
+    def topic(self):
         return f"{self.value}_image"
 
 
@@ -29,12 +29,12 @@ class StreamNode(Node):
                  q_len: int | None):
         # Initialize the Node with the name according to stream type
         stream_type = StreamType.VIDEO if file is not None else StreamType.WEBCAM
-        super().__init__(stream_type.node_str)
+        super().__init__(stream_type.node)
 
         # Create a publisher for the Image topic with queue size of 1
         if q_len is None:
             q_len = 1
-        self.publisher_ = self.create_publisher(Image, stream_type.image_str, q_len)
+        self.publisher_ = self.create_publisher(Image, stream_type.topic, q_len)
 
         # Open the video file or webcam
         if not os.path.exists(file):
@@ -99,7 +99,7 @@ class StreamNode(Node):
         self.destroy_node()  # Destroy this node
 
 def main(args=None):
-    parser = argparse.ArgumentParser(description=f'ROS2 streamer that create topic with name according to stream type. {", ".join([f"{t.value}: /{t.node_str}" for t in StreamType])}')
+    parser = argparse.ArgumentParser(description=f'ROS2 streamer that create topic with name according to stream type. ({", ".join([f"{t.value}: /{t.topic}" for t in StreamType])})')
     # required parameters
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--file', type=str, help='Use video with given video file path')

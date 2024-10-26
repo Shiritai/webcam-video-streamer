@@ -48,6 +48,10 @@ Then we can publish
     ros2 run webcam_video_streamer video_node --file path/to/video/file
     ```
 
+:::info
+Note that the published topic is named by the type of streaming (video: `/video_image`, webcam: `/webcam_image`).
+:::
+
 For more options, please check:
 
 ```bash
@@ -59,14 +63,14 @@ and see help message:
 ```bash
 usage: video_node [-h] (--file FILE | --webcam) [--fps FPS] [--loop] [--rescale RESCALE] [--q_len Q_LEN]
 
-ROS2 streamer that create topic with name according to stream type. video: /video_node, webcam: /webcam_node
+ROS2 streamer that create topic with name according to stream type. (video: /video_image, webcam: /webcam_image)
 
 options:
   -h, --help         show this help message and exit
   --file FILE        Use video with given video file path
   --webcam           Use webcam
-  --fps FPS          Streaming FPS (required in webcam mode), this implies the play speed of video (fps > source fps means speed up, vice versa). Note that this is not the accurate FPS, which determines the timer interval
-                     of reading source frames.
+  --fps FPS          Streaming FPS (required in webcam mode), this implies the play speed of video (fps > source fps means speed up, vice versa). Note that this is not the accurate FPS, which determines the timer interval of
+                     reading source frames.
   --loop             Loop the video after it ends, only available in video streaming mode
   --rescale RESCALE  Rescale width and height of the streamer
   --q_len Q_LEN      Publisher queue length, will use 1 if not set
@@ -84,13 +88,15 @@ ros2 run rqt_image_view rqt_image_view
 
 You can check ros2 topic to see current stream header:
 
+> `TOPIC` can be `/video_image` (video) or `/webcam_image` (webcam)
+
 * Frame ID
     ```bash
-    ros2 topic echo /video_image | grep frame_id
+    ros2 topic echo TOPIC | grep frame_id
     ```
 * Time stamp
     ```bash
-    ros2 topic echo /video_image | grep sec
+    ros2 topic echo TOPIC | grep sec
     ```
 
 ## Note
