@@ -13,10 +13,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='Shiritai',
+    maintainer='Tzu-Ching Yang',
     maintainer_email='shingekinocore@gmail.com',
     description='ROS2 streamer that create topic with name according to stream type',
-    license='TODO: License declaration',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
