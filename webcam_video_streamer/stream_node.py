@@ -37,7 +37,7 @@ class StreamNode(Node):
         self.publisher_ = self.create_publisher(Image, stream_type.topic, q_len)
 
         # Open the video file or webcam
-        if not os.path.exists(file):
+        if stream_type == StreamType.VIDEO and not os.path.exists(file):
             raise ValueError(f'File {file} does not exist')
         self.cap = cv2.VideoCapture(file if stream_type == StreamType.VIDEO else 0)
 
